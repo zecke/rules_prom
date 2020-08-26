@@ -1,0 +1,22 @@
+load("@rules_prom//:defs.bzl", "alert", "alert_group", "alert_many_restarts")
+
+alert(
+    name = "alert",
+    groups = [
+        ":alertgroup_prom",
+    ],
+)
+
+alert_group(
+    name = "alertgroup_prom",
+    alerts = [
+        ":prom_many_restarts",
+    ],
+    group_name = "group:name",
+)
+
+alert_many_restarts(
+    name = "prom_many_restarts",
+    job = "some_prom",
+    time_range = "1h",
+)

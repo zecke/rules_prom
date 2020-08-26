@@ -1,0 +1,5 @@
+    - alert: ProcessManyRestarts
+    expr: avg without(instance) (changes(process_start_time_seconds{job="JOB"}[RANGE]) > THRESHOLD
+    for: HOLD
+    labels:
+      severity: SEVERITY
